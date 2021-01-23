@@ -5,7 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "^2.26.1",
+    "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "gatsby": "^2.31.1",
     "gatsby-image": "^2.5.0",
     "gatsby-plugin-manifest": "^2.6.1",
     "gatsby-plugin-offline": "^3.4.0",
@@ -26,11 +30,11 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "cross-env NODE_OPTIONS=\"-r esm\" gatsby build",
+    "develop": "cross-env NODE_OPTIONS=\"-r esm\" gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "cross-env NODE_OPTIONS=\"-r esm\" gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
