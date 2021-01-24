@@ -1,20 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import ItemList from '../components/ItemList';
 
 export default function IndexPage({data}) {
-  const items = data.items.nodes;
-  return (
-    <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-              <a href={item.url}>
-                <h2>{item.title}</h2>
-                <img src={item.image} alt={item.title} />
-              </a>
-          </li>
-        ))}
-    </ul>
-  )
+  return <ItemList items={data.items.nodes}/>
 }
 
 export const query = graphql`
