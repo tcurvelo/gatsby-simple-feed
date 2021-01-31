@@ -50,7 +50,7 @@ const SingleItemStyle = styled.div`
 `;
 
 const SingleItem = ({item}) => (
-  <SingleItemStyle key={item.id}>
+  <SingleItemStyle>
       <a href={item.url} target="_blank" rel="noreferrer">
         <img src={item.image} alt={item.title} />
         <div className="title">{item.title}</div>
@@ -65,7 +65,7 @@ export default function ItemList({items}) {
       columnWidth={250} gutterWidth={25} gutterHeight={5}
       monitorImagesLoaded={true}
     >
-      {items.map((item) => <SingleItem item={item} />)}
+      {items.map((item) => <SingleItem key={item.id} item={item} />)}
     </StackGrid>
   )
 }
