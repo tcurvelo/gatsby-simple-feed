@@ -8,18 +8,25 @@ const SingleItemStyle = styled.div`
   font-size: 14px;
 
   .title, .price {
-    background-color: white;
-    color: black;
     font-weight: bold;
-    opacity: 0.7;
     padding: 0.3rem;
     position: absolute;
     text-align: center;
     width: 100%;
+
+    visibility: hidden;
+    opacity: 0.8;
+    background-color: #7a1c1c;
+    color: white;
+
     &:hover {
       opacity: 1;
-      background-color: red;
-      color: white;
+    }
+  }
+
+  &:hover {
+    .title, .price {
+      visibility: visible;
     }
   }
 
@@ -44,7 +51,7 @@ const SingleItemStyle = styled.div`
 
 const SingleItem = ({item}) => (
   <SingleItemStyle key={item.id}>
-      <a href={item.url} target="_blank">
+      <a href={item.url} target="_blank" rel="noreferrer">
         <img src={item.image} alt={item.title} />
         <div className="title">{item.title}</div>
         <div className="price">{item.price}</div>
@@ -54,7 +61,10 @@ const SingleItem = ({item}) => (
 
 export default function ItemList({items}) {
   return (
-    <StackGrid columnWidth={250} gutterWidth={25} gutterHeight={5}>
+    <StackGrid
+      columnWidth={250} gutterWidth={25} gutterHeight={5}
+      monitorImagesLoaded={true}
+    >
       {items.map((item) => <SingleItem item={item} />)}
     </StackGrid>
   )
