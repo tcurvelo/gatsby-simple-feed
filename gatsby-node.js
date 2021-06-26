@@ -19,6 +19,10 @@ async function fetchItemsFromLastJob( {actions, createNodeId, createContentDiges
   const last_job_url = `https://app.scrapinghub.com/api/jobs/list.json?project=${project_id}&spider=${spider}&state=finished&count=1`;
   const last_job = await axios.get(last_job_url, auth_config);
 
+  if (!last_job.data.jobs[0]) {
+    console.log(`Couldn't retrieve ${spider}'s last job at ${project_id}. Make sure it was not archived.`);
+    return;
+  }
   const job_id = last_job.data.jobs[0].id;
   const items_url = `https://storage.scrapinghub.com/items/${job_id}`;
   const items = await (await axios.get(items_url, auth_config)).data;
